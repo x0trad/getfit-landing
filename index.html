@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GETFIT — Weight Loss, Reimagined</title>
+<meta name="description" content="GETFIT delivers personalized, doctor-guided GLP-1 weight loss care, designed around your life. See if you qualify.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1f7a4d;
+    --green-2:#2fa56a;
+    --green-dark:#103d27;
+    --lime:#c5f06b;
+    --mint:#e7f6ec;
+    --cream:#fbfaf4;
+    --ink:#11201a;
+    --muted:#5e6f66;
+    --line:#e7ece8;
+    --radius:24px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;letter-spacing:-.02em;line-height:1.04;font-weight:600}
+  section{padding:96px 0;position:relative}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--cream);padding:16px 30px;border-radius:999px;font-weight:600;font-size:1rem;transition:transform .25s ease, box-shadow .25s ease;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(17,32,26,.22)}
+  .btn-green{background:var(--green)}
+  .btn-lime{background:var(--lime);color:var(--green-dark)}
+  .btn-lg{padding:19px 40px;font-size:1.08rem}
+  .arrow{font-size:1.1em;transition:transform .25s}
+  .btn:hover .arrow{transform:translateX(4px)}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:700;color:var(--green)}
+  .eyebrow::before{content:"";width:26px;height:1.5px;background:var(--green);display:inline-block}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .tag{color:#a85a12;font-style:italic;font-size:.9rem}
+
+  /* Announcement */
+  .announce{background:var(--green-dark);color:var(--cream);text-align:center;font-size:.9rem;padding:11px 16px;letter-spacing:.01em}
+  .announce strong{color:var(--lime)}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:40;background:rgba(251,250,244,.78);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.5rem;color:var(--green-dark)}
+  .logo b{color:var(--green)}
+  .nav-links{display:flex;gap:30px;font-size:.95rem;font-weight:500;color:var(--muted)}
+  .nav-links a:hover{color:var(--ink)}
+
+  /* Hero */
+  .hero{padding:60px 0 70px;background:
+      radial-gradient(60% 50% at 78% 18%, rgba(47,165,106,.16), transparent 70%),
+      radial-gradient(50% 40% at 8% 90%, rgba(197,240,107,.28), transparent 70%),
+      var(--cream)}
+  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:54px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,5.4vw,4.4rem);font-weight:600}
+  .hero h1 em{font-style:italic;color:var(--green)}
+  .hero .lead{font-size:1.18rem;color:var(--muted);max-width:520px;margin-top:22px}
+  .hero .cta-row{display:flex;align-items:center;gap:18px;margin-top:32px;flex-wrap:wrap}
+  .rating{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted)}
+  .stars{color:#f5a623;letter-spacing:2px}
+  .checks{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .checks li{background:#fff;border:1px solid var(--line);padding:9px 15px;border-radius:999px;font-size:.86rem;font-weight:500;display:flex;align-items:center;gap:7px}
+  .checks li::before{content:"✦";color:var(--green-2)}
+
+  .hero-visual{position:relative}
+  .hero-visual img{width:100%;border-radius:30px;object-fit:cover;box-shadow:0 30px 60px -20px rgba(16,61,39,.35)}
+  .float-card{position:absolute;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.6);border-radius:18px;padding:14px 18px;box-shadow:0 12px 30px rgba(16,61,39,.16)}
+  .float-card .big{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--green-dark);font-weight:700;line-height:1}
+  .float-card .sm{font-size:.74rem;color:var(--muted);margin-top:3px}
+  .fc-1{top:24px;left:-26px}
+  .fc-2{bottom:30px;right:-22px}
+
+  /* Marquee press */
+  .marquee-wrap{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;padding:22px 0}
+  .marquee{display:flex;gap:60px;white-space:nowrap;animation:scroll 26s linear infinite;width:max-content;align-items:center;color:#9aa9a1;font-weight:600;letter-spacing:.04em}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  .marquee span{font-family:'Fraunces',serif;font-size:1.15rem;opacity:.7}
+
+  /* Section heads */
+  .sec-head{max-width:660px}
+  .sec-head h2{font-size:clamp(2rem,4vw,3rem)}
+  .sec-head p{color:var(--muted);font-size:1.1rem;margin-top:16px}
+  .center{text-align:center;margin-left:auto;margin-right:auto}
+
+  /* Pricing */
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:48px}
+  .tier{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:transform .3s, box-shadow .3s, border-color .3s;position:relative;overflow:hidden}
+  .tier:hover{transform:translateY(-8px);box-shadow:0 24px 50px -24px rgba(16,61,39,.4);border-color:transparent}
+  .tier .imgbox{border-radius:16px;overflow:hidden;aspect-ratio:1;margin-bottom:18px;background:var(--mint)}
+  .tier .imgbox img{width:100%;height:100%;object-fit:cover}
+  .tier .price{font-family:'Fraunces',serif;font-weight:700;color:var(--green-dark);font-size:1.15rem}
+  .tier h3{font-size:1.2rem;margin:6px 0}
+  .tier .sub{color:var(--muted);font-size:.92rem;min-height:42px}
+  .tier .link{margin-top:14px;font-weight:600;color:var(--green);display:inline-flex;gap:6px;align-items:center}
+  .tier.featured{background:linear-gradient(165deg,var(--green-dark),var(--green));color:var(--cream);border-color:transparent}
+  .tier.featured .price,.tier.featured h3{color:#fff}
+  .tier.featured .sub{color:rgba(255,255,255,.8)}
+  .tier.featured .link{color:var(--lime)}
+  .badge{position:absolute;top:14px;right:14px;background:var(--lime);color:var(--green-dark);font-size:.68rem;font-weight:700;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+
+  /* Split feature */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .split.alt{direction:rtl}.split.alt>*{direction:ltr}
+  .split-img{border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -28px rgba(16,61,39,.4)}
+  .split-img img{width:100%;aspect-ratio:4/5;object-fit:cover}
+
+  /* Estimator */
+  .estimator{background:linear-gradient(160deg,var(--green-dark),#0b2e1d);color:var(--cream);border-radius:32px;padding:54px;text-align:center;position:relative;overflow:hidden}
+  .estimator::after{content:"";position:absolute;width:340px;height:340px;background:radial-gradient(circle,rgba(197,240,107,.25),transparent 70%);top:-120px;right:-80px}
+  .estimator .eyebrow{color:var(--lime)}
+  .estimator .eyebrow::before{background:var(--lime)}
+  .estimator input[type=range]{width:100%;max-width:460px;accent-color:var(--lime);margin:22px 0}
+  .est-out{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:700;color:var(--lime);line-height:1}
+  .est-cur{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600}
+
+  /* Stats bento */
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:18px;margin-top:48px}
+  .b-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px}
+  .b-card .num{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:700;color:var(--green);line-height:1}
+  .b-card .lbl{color:var(--muted);margin-top:8px;font-size:.95rem}
+  .b-wide{grid-column:span 2;background:linear-gradient(150deg,var(--mint),#d7efdf)}
+  .b-dark{background:var(--ink);color:var(--cream)}
+  .b-dark .num{color:var(--lime)}.b-dark .lbl{color:rgba(255,255,255,.7)}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:48px;counter-reset:s}
+  .step{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;position:relative}
+  .step::before{counter-increment:s;content:"0" counter(s);font-family:'Fraunces',serif;font-size:2.2rem;color:var(--green-2);font-weight:700;opacity:.55}
+  .step h3{font-size:1.25rem;margin:10px 0 8px}
+  .step p{color:var(--muted);font-size:.96rem}
+
+  /* Testimonial */
+  .quote{background:linear-gradient(160deg,#fff,var(--mint));border-radius:32px;padding:60px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
+  .quote .avatar{width:120px;height:120px;border-radius:50%;overflow:hidden;box-shadow:0 14px 30px rgba(16,61,39,.25)}
+  .quote .avatar img{width:100%;height:100%;object-fit:cover}
+  .quote blockquote{font-family:'Fraunces',serif;font-size:1.9rem;line-height:1.2;font-weight:500}
+  .quote cite{display:block;margin-top:16px;font-style:normal;color:var(--muted);font-size:.95rem;font-family:'Inter'}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:48px auto 0}
+  details{border:1px solid var(--line);background:#fff;border-radius:16px;padding:4px 22px;margin-bottom:12px;transition:border-color .2s}
+  details[open]{border-color:var(--green-2)}
+  summary{font-weight:600;font-size:1.08rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--green);font-size:1.5rem;font-weight:300;transition:transform .25s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{padding-bottom:18px;color:var(--muted)}
+
+  /* Final CTA */
+  .final{background:linear-gradient(165deg,var(--green-dark),var(--green));color:var(--cream);border-radius:36px;padding:72px;text-align:center;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;width:420px;height:420px;background:radial-gradient(circle,rgba(197,240,107,.22),transparent 70%);bottom:-160px;left:-120px}
+  .final h2{font-size:clamp(2.1rem,4.4vw,3.4rem);color:#fff}
+  .final .goals{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:28px 0}
+  .final .goals a{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:13px 24px;font-weight:500;transition:background .2s}
+  .final .goals a:hover{background:rgba(255,255,255,.22)}
+
+  /* Footer */
+  footer{background:var(--ink);color:#aebcb3;padding:64px 0 34px;font-size:.92rem;margin-top:30px}
+  footer .logo{color:#fff}footer .logo b{color:var(--lime)}
+  .fcols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;margin-bottom:34px}
+  footer strong{color:#fff;display:block;margin-bottom:12px}
+  footer a:hover{color:#fff}
+  .flinks{display:flex;flex-wrap:wrap;gap:8px 20px;border-top:1px solid #283931;padding-top:22px}
+  .disclaimer{font-size:.76rem;color:#76847b;margin-top:18px;line-height:1.55}
+
+  @media(max-width:900px){
+    .hero-grid,.split,.quote{grid-template-columns:1fr;gap:36px}
+    .split.alt{direction:ltr}
+    .nav-links{display:none}
+    .tiers,.bento,.steps{grid-template-columns:1fr 1fr}
+    .b-wide{grid-column:span 2}
+    .quote{text-align:center;justify-items:center}
+    .fcols{grid-template-columns:1fr 1fr}
+    .estimator,.final{padding:40px 26px}
+  }
+  @media(max-width:560px){
+    .tiers,.bento,.steps,.fcols{grid-template-columns:1fr}
+    .b-wide{grid-column:span 1}
+    section{padding:64px 0}
+    .float-card{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="announce"><strong>[COUPON_CODE]</strong> — Start for just $[SALE_PRICE] · Fast, free shipping included</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">get<b>fit</b></div>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#results">Results</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-green" href="[INTAKE_URL]">Get Approved <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">Join [NUMBER]+ GETFIT members</span>
+      <h1 style="margin-top:18px">Lose the weight.<br><em>Keep your life.</em></h1>
+      <p class="lead">Personalized, doctor-guided GLP-1 care that works with your body — not against it. No clinics, no guesswork, no hidden fees.</p>
+      <ul class="checks">
+        <li>Steady weekly results</li>
+        <li>From $[SALE_PRICE] · no insurance needed</li>
+        <li>Free dietitian & coaching*</li>
+        <li>HSA/FSA eligible</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-lg btn-green" href="[INTAKE_URL]">Am I Qualified? <span class="arrow">→</span></a>
+        <div class="rating"><span class="stars">★★★★★</span> Loved by [NUMBER]+ members</div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_34Pck36JwdliPPaxereFnjSP4ei/hf_20260625_062609_f62e1cac-4300-4e72-a3af-df958bb55bac.png" alt="Confident, healthy GETFIT member">
+      <div class="float-card fc-1"><div class="big">-18%</div><div class="sm">avg. body weight*</div></div>
+      <div class="float-card fc-2"><div class="big">24/7</div><div class="sm">care team access</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>[Press logo]</span><span>·</span><span>[Press logo]</span><span>·</span><span>[Press logo]</span><span>·</span><span>[Press logo]</span><span>·</span><span>[Press logo]</span><span>·</span>
+    <span>[Press logo]</span><span>·</span><span>[Press logo]</span><span>·</span><span>[Press logo]</span><span>·</span><span>[Press logo]</span><span>·</span><span>[Press logo]</span><span>·</span>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Trusted by experts, priced for you</span>
+      <h2 style="margin-top:16px">Pick the path that fits</h2>
+      <p>Doctor-approved options, transparent pricing, everything included. No surprises at checkout.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="imgbox"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_34Pck36JwdliPPaxereFnjSP4ei/hf_20260625_062610_9598f5bb-18f1-4271-b554-667cda22c4b7.png" alt="GLP-1 injection"></div>
+        <div class="price">From $[INJECT_PRICE]</div>
+        <h3>GLP-1 Injections</h3>
+        <p class="sub">One simple injection per week.</p>
+        <a class="link" href="[INTAKE_URL]">Get started →</a>
+      </div>
+      <div class="tier featured reveal">
+        <span class="badge">Most popular</span>
+        <div class="imgbox"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_34Pck36JwdliPPaxereFnjSP4ei/hf_20260625_062612_6f201876-795d-4ea7-91ae-402ae0c3d2af.png" alt="GLP-1 tablets"></div>
+        <div class="price">From $[TABLET_PRICE]</div>
+        <h3>GLP-1 Tablets</h3>
+        <p class="sub">One dissolvable tablet per day.</p>
+        <a class="link" href="[INTAKE_URL]">Get started →</a>
+      </div>
+      <div class="tier reveal">
+        <div class="imgbox"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_34Pck36JwdliPPaxereFnjSP4ei/hf_20260625_062610_9598f5bb-18f1-4271-b554-667cda22c4b7.png" alt="Branded option A"></div>
+        <div class="price">$[MEMBERSHIP] + med cost</div>
+        <h3>[Branded Option A]</h3>
+        <p class="sub">[Short description].</p>
+        <a class="link" href="[INTAKE_URL]">Get started →</a>
+      </div>
+      <div class="tier reveal">
+        <div class="imgbox"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_34Pck36JwdliPPaxereFnjSP4ei/hf_20260625_062612_6f201876-795d-4ea7-91ae-402ae0c3d2af.png" alt="Branded option B"></div>
+        <div class="price">$[MEMBERSHIP] + med cost</div>
+        <h3>[Branded Option B]</h3>
+        <p class="sub">Availability subject to change.</p>
+        <a class="link" href="[INTAKE_URL]">Get started →</a>
+      </div>
+    </div>
+    <p class="tag center" style="margin-top:22px">Only list brand-name medications you actually offer; add the trademark disclaimer in the footer.</p>
+  </div>
+</section>
+
+<!-- SPLIT: science -->
+<section style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap split">
+    <div class="split-img reveal">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_34Pck36JwdliPPaxereFnjSP4ei/hf_20260625_062613_d576602b-787d-4be7-88a8-1df8d8a87103.png" alt="Healthy lifestyle">
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">The science, simplified</span>
+      <h2 style="font-size:clamp(2rem,4vw,2.9rem);margin-top:16px">It's not willpower. It's biology.</h2>
+      <p style="color:var(--muted);font-size:1.1rem;margin-top:18px">Nearly 70% of weight is genetically influenced. GLP-1 is a naturally occurring hormone that helps regulate appetite and blood sugar — quieting cravings and resetting how your body manages weight. We help you work <em>with</em> it.</p>
+      <div style="margin-top:28px"><a class="btn btn-green" href="[INTAKE_URL]">Get started <span class="arrow">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATOR -->
+<section id="results">
+  <div class="wrap">
+    <div class="estimator reveal">
+      <span class="eyebrow">See your potential</span>
+      <p style="margin-top:18px;opacity:.85">Select your current weight</p>
+      <div class="est-cur" id="curWeight">200 lbs</div>
+      <input type="range" min="120" max="400" value="200" id="weightSlider">
+      <p style="opacity:.8">You could lose up to</p>
+      <div class="est-out" id="estLoss">40 lbs</div>
+      <p class="tag" style="margin-top:14px;color:#cfe6a8">Illustrative estimate — back this with your own data and add a disclaimer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BENTO -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why members stay</span>
+      <h2 style="margin-top:16px">Results worth talking about</h2>
+    </div>
+    <div class="bento">
+      <div class="b-card b-wide reveal">
+        <div class="num">[X]%</div>
+        <div class="lbl">Average body-weight loss for members in the GETFIT program*</div>
+      </div>
+      <div class="b-card b-dark reveal"><div class="num">[X]x</div><div class="lbl">More than diet & exercise alone</div></div>
+      <div class="b-card reveal"><div class="num">[X]%</div><div class="lbl">Kept the weight off</div></div>
+      <div class="b-card reveal"><div class="num">[X]"</div><div class="lbl">Potential waist reduction</div></div>
+      <div class="b-card reveal"><div class="num">9/10</div><div class="lbl">Rated most effective they've tried</div></div>
+      <div class="b-card b-wide reveal" style="background:linear-gradient(150deg,var(--lime),#a6e04f)"><div class="num" style="color:var(--green-dark)">24/7</div><div class="lbl" style="color:var(--green-dark)">Unlimited messaging & support, included</div></div>
+    </div>
+    <p class="tag" style="margin-top:18px">* Based on GETFIT member data over [time period]. [cite source]</p>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="how" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Simple from day one</span>
+      <h2 style="margin-top:16px">Three steps to started</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Get approved</h3><p>Take a quick online evaluation. Licensed providers review your info and follow up fast.</p></div>
+      <div class="step reveal"><h3>Get prescribed</h3><p>If appropriate, you'll get a personalized plan and prescription built around your goals.</p></div>
+      <div class="step reveal"><h3>Receive your Rx</h3><p>Medication ships discreetly to your door. Open the box and follow the simple instructions.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section>
+  <div class="wrap">
+    <div class="quote reveal">
+      <div class="avatar"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_34Pck36JwdliPPaxereFnjSP4ei/hf_20260625_062609_f62e1cac-4300-4e72-a3af-df958bb55bac.png" alt="GETFIT member"></div>
+      <div>
+        <span class="eyebrow">Verified member</span>
+        <blockquote style="margin-top:14px">"When nothing else worked, GETFIT finally did. The weight came off — and stayed off."</blockquote>
+        <cite>— [Member name or initials], GETFIT member · <span class="tag">replace with your own verified, consented quotes</span></cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Good to know</span>
+      <h2 style="margin-top:16px">Frequently asked</h2>
+    </div>
+    <div class="faq">
+      <details open class="reveal"><summary>How much does the program cost?</summary><p>GETFIT starts at $[SALE_PRICE] for your first month with no contract. That covers your provider review, personalized plan, 1:1 guidance, a progress report, and the prescription shipped to your door. Refills are $[FULL_PRICE] with the same benefits.</p></details>
+      <details class="reveal"><summary>Will this work for me?</summary><p>Our providers determine whether a GLP-1 medication is appropriate for you based on your health history and goals. [Adjust to your actual offering.]</p></details>
+      <details class="reveal"><summary>What if my insurance doesn't cover it?</summary><p>GETFIT prescriptions are cash-pay, though your insurance may reimburse certain branded options. We keep pricing transparent so you can move toward your goal without insurance hurdles.</p></details>
+      <details class="reveal"><summary>What happens after I sign up?</summary><p>After your online visit, a licensed provider reviews your answers and decides whether treatment is appropriate. If so, your prescription ships directly from the pharmacy to your door.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="wrap">
+    <div class="final reveal">
+      <span class="eyebrow" style="color:var(--lime)">The GETFIT guarantee</span>
+      <h2 style="margin-top:18px">The only thing<br>you'll lose is the weight.</h2>
+      <p style="color:rgba(255,255,255,.85);font-size:1.1rem;margin-top:16px;max-width:540px;margin-inline:auto">With [NUMBER]+ members, we're confident you'll reach your goal with our personalized program.</p>
+      <p style="font-weight:600;margin-top:34px">What's your weight-loss goal?</p>
+      <div class="goals">
+        <a href="[INTAKE_URL]">Losing 1–20 lbs</a>
+        <a href="[INTAKE_URL]">Losing 21–50 lbs</a>
+        <a href="[INTAKE_URL]">Losing 51+ lbs</a>
+        <a href="[INTAKE_URL]">Just want to lose it</a>
+      </div>
+      <a class="btn btn-lg btn-lime" href="[INTAKE_URL]">Continue with confidence <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div>
+        <div class="logo">get<b>fit</b></div>
+        <p style="margin-top:14px;max-width:300px">Personalized, doctor-guided GLP-1 weight loss care — designed around your life.</p>
+        <div style="margin-top:16px;color:#cfe6a8;font-size:.85rem">✓ Guarantee · ✓ Free shipping · ✓ No hidden fees</div>
+      </div>
+      <div><strong>Contact</strong>[help@yourdomain]<br>[PHONE]<br>[Business address]</div>
+      <div><strong>Company</strong><a href="#how">How it works</a><br><a href="#pricing">Pricing</a><br><a href="#results">Results</a></div>
+      <div><strong>Support</strong><a href="#faq">FAQ</a><br>Help center<br>Account</div>
+    </div>
+    <div class="flinks">
+      <a href="#">Terms &amp; Conditions</a><a href="#">Privacy Policy</a><a href="#">Privacy Practices</a><a href="#">Refund Policy</a><a href="#">Medical Consent</a><a href="#">California Residents</a><a href="#">Bill of Rights</a>
+    </div>
+    <p class="disclaimer">© 2026 GETFIT. All rights reserved. *Free to end users subject to insurance and copay eligibility, determined at time of visit. Replace all legal/medical disclaimer text with your own counsel-reviewed language before publishing. Substantiate every claim with your own data. Any brand-name medications referenced are trademarks of their respective owners. Images are AI-generated for design purposes.</p>
+  </div>
+</footer>
+
+<script>
+  // Estimator
+  const slider=document.getElementById('weightSlider'),cur=document.getElementById('curWeight'),loss=document.getElementById('estLoss');
+  slider.addEventListener('input',()=>{const w=+slider.value;cur.textContent=w+' lbs';loss.textContent=Math.round(w*0.20)+' lbs';});
+  // Scroll reveal
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
